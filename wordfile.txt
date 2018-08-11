@@ -1,0 +1,13 @@
+fool    cool
+foul    foul
+fool    foil
+fool    pool
+foil    fail
+pool    poll
+poll    pall
+poll    pole
+pole    pope
+pole    pale
+pale    sale
+pale    page
+page    sage
