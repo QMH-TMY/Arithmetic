@@ -77,10 +77,6 @@ def kinghtGraph(size):
                 ktGraph.addEdge(currNode,avalNode)
     return ktGraph
 
-def pos2node(row,col,size):
-    '''将坐标转换为点数'''
-    return (row * size) + col
-
 def getPos(row,col,size):
     '''得到可去的坐标'''
     newMoves   = []
@@ -102,6 +98,10 @@ def legal(row,col,size):
         return True
     else:
         return False
+
+def pos2node(row,col,size):
+    '''将坐标转换为点数'''
+    return (row * size) + col
 
 #print "point number:%d"%g.numVertice
 #print "Edge  number:%d"%g.edgeNumber
@@ -204,19 +204,58 @@ class DFSGraph(Graph):
         startVertex.setFinish(self.time)
 
 #########################################################
-def SCC(DFSgraph):
+   #/*******************************/# 
+def SCC(DFSgraph1):
     '''强连通分量算法'''
-    DFSgraph.dfs() #计算图的完成时间
-    finitime1 = [(item.fini,item.id) for item in DFSgraph.vertexList.values()]
-    finitime1.sort(key=lambda x:x[0],reverse=True) #从大到小排列完成时间
-    1.转置图
-    DFSgraph.dfs()
-    finitime2 = [(item.fini,item.id) for item in DFSgraph.vertexList.values()]
-    finitime2.sort(key=lambda x:x[0])              #从小到大排列完成时间
-    
-    pos = [i for i in range(len(finitime1)) if finitime1[i] == finitime2[i]]
+    DFSgraph1.dfs()                   #计算图的完成时间
+    finitime1 = sortFini(DFSgraph1)
+
+    DFSgraph2 = transGraph(DFSgraph1) #转置图
+    DFSgraph2.dfs()
+    finitime2 = sortFini(DFSgraph2,False)
+
+    positionL = [i for i in range(len(fini1)) if fini1time[i] == finitime2[i]]
+    graphList = splitList(Olist,positionL)
+    return graphList
+
+def sortFini(graph,rever=True):
+    '''联通量算法辅助1:将完成时间列表排序'''
+    fini = [(item.fini,item.id) for item in graph.vertexList.values()]
+    fini.sort(key=lambda item:item[0],reverse=rever) #从大到小排列完成时间
+    return fini
             
-    
+def transGraph(graph):
+    '''连通量算法辅助2:得到一幅图的转置图'''
+    newgraph = DFSgraph()
+    for vert in graph.vertexList.keys():
+        for nbr in vert.getConnections():
+            newgraph.addEdge(nbr,vert,vert.getWeight(nbr))         
+    return newgraph 
+
+def splitList(Olist,posList):
+    '''拆分列表'''
+    graphList = [] #总的列表，存储所有小的连通量
+    for i in range(len(posList) + 1):
+        graphList.append([])
+
+    j = 0 
+    leftList = Olist
+    for pos in posList:
+        if 0 == pos:
+            graphList[j] = leftList[pos]
+            leftList = leftList[1:]
+            j += 1
+        elif len(Olist)-1 == pos :
+            graphList[j] = leftList[pos]
+            leftList = leftList[:pos]
+            j += 1
+        
+    return graphList
+    #未完待续
+        
+
+   #/*******************************/# 
+
 def dijkstra(G,start):
     '''最短路径算法,时间复杂度:O((V+E)logV)
        需要整个图，实际运用不现实
@@ -235,6 +274,8 @@ def dijkstra(G,start):
                 nbr.setDistance(newDist)
                 PriQueue.decreaseKey(nbr,newDist)
 
+
+   #/*******************************/# 
 def prim(G,start):
     '''贪婪算法系列算法,时间复杂度:O((V+E)logV + V)'''
     for v in G:
@@ -265,4 +306,4 @@ def getMinPath(G,endpos):
         node = node.getPred()
     print(node.getId(),dist)
 
-
+   #/*******************************/# 
