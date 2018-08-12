@@ -207,16 +207,17 @@ class DFSGraph(Graph):
    #/*******************************/# 
 def SCC(DFSgraph1):
     '''强连通分量算法'''
-    DFSgraph1.dfs()                   #计算图的完成时间
-    finitime1 = sortFini(DFSgraph1)
+    DFSgraph1.dfs()                      #计算图的完成时间
+    fini1 = sortFini(DFSgraph1)          #func1
 
-    DFSgraph2 = transGraph(DFSgraph1) #转置图
+    DFSgraph2 = transGraph(DFSgraph1)    #转置图 func2
     DFSgraph2.dfs()
-    finitime2 = sortFini(DFSgraph2,False)
+    fini2 = sortFini(DFSgraph2,False)
 
-    positionL = [i for i in range(len(fini1)) if fini1time[i] == finitime2[i]]
-    graphList = splitList(Olist,positionL)
-    return graphList
+    position = [i for i in range(len(fini1)) if fini1[i] == fini2[i]]
+    graphlis = splitList(Olist,position) #func3
+
+    return graphlis
 
 def sortFini(graph,rever=True):
     '''联通量算法辅助1:将完成时间列表排序'''
@@ -232,28 +233,31 @@ def transGraph(graph):
             newgraph.addEdge(nbr,vert,vert.getWeight(nbr))         
     return newgraph 
 
-def splitList(Olist,posList):
-    '''拆分列表'''
-    graphList = [] #总的列表，存储所有小的连通量
-    for i in range(len(posList) + 1):
-        graphList.append([])
+def splitList(Olist,pos):
+    '''连通量算法辅助3:拆分列表'''
+    Glist  = []              
+    length = len(Olist)-1
+    keyval = pos[-1]
 
-    j = 0 
-    leftList = Olist
-    for pos in posList:
-        if 0 == pos:
-            graphList[j] = leftList[pos]
-            leftList = leftList[1:]
-            j += 1
-        elif len(Olist)-1 == pos :
-            graphList[j] = leftList[pos]
-            leftList = leftList[:pos]
-            j += 1
-        
-    return graphList
-    #未完待续
-        
+    for i in xrange(len(posList)):
+        if keyval != length:
+            if keyval == pos[i]:
+                Glist.append(Olist[pos[i]:])
+            elif pos[i]+1 == pos[i+1]:
+                Glist.append(Olist[pos[i]])
+            else:
+                Glist.append(Olist[pos[i]])
+                Glist.append(Olist[pos[i]+1:pos[i+1]])
+        else:
+            if keyval == pos[i]:
+                Glist.append(Olist[keyval])
+            elif pos[i]+1 == pos[i+1]:
+                Glist.append(Olist[pos[i]])
+            else:
+                Glist.append(Olist[pos[i]])
+                Glist.append(Olist[pos[i]+1:pos[i+1]])
 
+    return Glist           #总的列表，存储所有小的连通量
    #/*******************************/# 
 
 def dijkstra(G,start):
@@ -284,7 +288,7 @@ def prim(G,start):
 
     start = G.getVertex(start)
     start.setDistance(0)
-    PriQueue = PriorityQueue() #加入队列
+    PriQueue = PriorityQueue() #创建优先队列
     PriQueue.buildHeap([(v.getDistance(),v) for v in G])
     
     while not PriQueue.isEmpty():
