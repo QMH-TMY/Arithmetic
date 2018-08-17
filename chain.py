@@ -53,6 +53,7 @@ class UnorderedList:
         return found 
 
     def pop(self,pos='N'):
+        '''弹出元素'''
         current  = self.head
         previous = None
 
@@ -60,7 +61,6 @@ class UnorderedList:
             while None != current.getNext():
                 previous = current
                 current  = current.getNext()
-
             previous.setNext(current.getNext())
         else:
             if 0<= pos <= self.size():
@@ -70,7 +70,6 @@ class UnorderedList:
             else:
                 print("Error number")
                 exit(0)
-
             previous.setNext(current.getNext())
 
         return current.getData()
