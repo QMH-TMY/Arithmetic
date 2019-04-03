@@ -1,7 +1,7 @@
 # -*- coding:UTF8 -*-
 #!/usr/bin/python
 #搜索排序算法
-####################################################################
+
 #查找算法
 def sequenSearch(Olist,item):
     '''乱序线性查找,时间复杂度:O(n)'''
@@ -17,7 +17,6 @@ def sequenSearch(Olist,item):
 
     return found
 
-#print(sequenSearch([1,2,3,5,100,23],10))
 
 def OrdersequenSear(Olist,item):
     '''顺序线性查找,时间复杂度:O(n)'''
@@ -35,9 +34,6 @@ def OrdersequenSear(Olist,item):
             pos  += 1
 
     return found
-
-#print(OrdersequenSear([0,1,2,8,13,17,19,32,42],30))
-
 
 def binarySearch(Olist,item):
     '''二分查找,时间复杂度:O(log^n)'''
@@ -73,7 +69,6 @@ def binarySearch1(Olist,item):
         else:
             return binarySearch(Olist[midpos+1:],item)
 
-#print(binarySearch1([0,1,3,4,7,9,12,20,31,45,67,100],100))
 
 
 def hashSearch(Olist,item):
@@ -84,6 +79,7 @@ def hashSearch(Olist,item):
         return True
     else:
         return False
+
 #构造哈希散列函数的常见方法
 #1.求余数
 #2.分组求和(1,2)
@@ -158,9 +154,6 @@ class HashTable:
 
 
 
-
-
-####################################################################
 #排序算法
 def maopao(Olist):
     '''冒泡排序1,时间复杂度:O(n^2)'''
@@ -239,10 +232,7 @@ def insertionSort(Olist):
 
         Olist[pos] = currVal
 
-#a =[44,26,63,17,77,31,44,55,20]
-#insertionSort(a)
-#print(a)
-#/**********************************************/#
+
 def shellSort(Olist):
     '''希尔排序，平均时间复杂度:O(n^3/2)'''
     gap = len(Olist) >> 1 #分割的子列表大小
@@ -266,10 +256,6 @@ def gapInsertSort(Olist,start,gap):
             newpos -= gap 
 
         Olist[newpos] = curVal
-#a = [54,25,93,14,77,100,100,200,31,44,55,20]
-#shellSort(a)
-#print(a)
-#/**********************************************/#
 
 def mergeSort(Olist):
     '''归并排序，利用递归，时间复杂度:O(nlog^n)
@@ -304,16 +290,10 @@ def mergeSort(Olist):
             right += 1
             lst   += 1
                 
-    #print("Merging",Olist)
 
-#Olist = [54,26,93,17,77,31,44,55,20]
-#mergeSort(Olist)
-
-
-#/**********************************************/#
 def quickSort(Olist):
     '''快速排序，时间复杂度:O(nlogn)-O(n^2)'''
-#    first,last = firstpos(Olist)
+    #first,last = firstpos(Olist)
     quickSortHelper(Olist,0,len(Olist)-1)
 
 def firstpos(Olist):
@@ -362,7 +342,9 @@ def partition(Olist,first,last):
     
     return right
 
-Olist = [31,26,93,17,54,20,44,55,77]
-quickSort(Olist)
-print(Olist)
-####################################################################
+
+if __name__ == "__main__":
+    #按照需要测试算法
+    Olist = [31,26,93,17,54,20,44,55,77]
+    quickSort(Olist)
+    print(Olist)
