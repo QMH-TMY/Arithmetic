@@ -1,9 +1,9 @@
 -----------------
 # Compatible OS #
 -----------------
-	Unix
-	Linux
+	Mac OS
 	Windows
+	Unix-like OS
 
 -----------------
 # Description  #
