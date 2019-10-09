@@ -1,3 +1,12 @@
-# Description #
-	These are some basic algorithms with python.
-	Aug 10 2018 
+-----------------
+# Compatible OS #
+-----------------
+	Unix
+	Linux
+	Windows
+
+-----------------
+# Description  #
+-----------------
+These are some basic algorithms with python.
+	
