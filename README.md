@@ -1,12 +1,8 @@
------------------
-# Compatible OS #
------------------
-	Mac OS
-	Windows
-	Unix-like OS
+### Compatible OS 
+- Mac OS
+- Windows
+- Linux 
 
------------------
-# Description  #
------------------
-These are some basic algorithms with python.
+### Description  
+[[中文版](./README_CN.md)] These are some basic algorithms with python.
 	
