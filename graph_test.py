@@ -94,10 +94,11 @@ def getPos(row,col,size):
 
 def legal(row,col,size):
     '''判断是否超界'''
-    if 0<= row < size and 0<= col < size:
-        return True
-    else:
-        return False
+    return True if 0<= row < size and 0<= col < size else False
+    #if 0<= row < size and 0<= col < size:
+    #    return True
+    #else:
+    #    return False
 
 def pos2node(row,col,size):
     '''将坐标转换为点数'''

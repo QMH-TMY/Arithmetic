@@ -34,7 +34,7 @@ class UnorderedList:
         current = self.head
         count   = 0
         
-        while None != current:
+        while current:
             count  += 1
             current = current.getNext()
 
@@ -44,7 +44,7 @@ class UnorderedList:
         current = self.head
         found   = False
         
-        while None != current and not found:
+        while current and not found:
             if item == current.getData():
                 found = True
             else:
@@ -58,7 +58,7 @@ class UnorderedList:
         previous = None
 
         if 'N' == pos:
-            while None != current.getNext():
+            while current.getNext():
                 previous = current
                 current  = current.getNext()
             previous.setNext(current.getNext())
@@ -79,13 +79,13 @@ class UnorderedList:
         found   = False
         count   = 0
 
-        while None != current:
+        while current:
             if item == current.getData():
                 return count
-            else:
-                previous = current
-                current  = current.getNext()
-                count   += 1
+            
+            previous = current
+            current  = current.getNext()
+            count   += 1
 
         print("%s do not exist"%item) 
         
@@ -99,10 +99,10 @@ class UnorderedList:
         previous = None
         node = Node(item)
 
-        if None == self.head:
+        if not self.head:
             self.head = node
         else:
-            while None != current:
+            while current:
                 previous = current
                 current  = current.getNext()
 
@@ -132,7 +132,7 @@ class UnorderedList:
                 previous = current
                 current  = current.getNext()
 
-        if previous == None:
+        if not previous:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
@@ -149,7 +149,7 @@ class OrderedList:
         current = self.head
         count   = 0
 
-        while None != current:
+        while current:
             count  += 1
             current = current.getNext()
         return count
@@ -158,7 +158,7 @@ class OrderedList:
         current = self.head
         found   = False
         
-        while None != current and not found:
+        while current and not found:
             if item == current.getData():
                 found = True
             elif item > current.getData():
@@ -173,7 +173,7 @@ class OrderedList:
         previous = None
 
         if 'N' == pos:
-            while None != current.getNext():
+            while current.getNext():
                 previous = current
                 current  = current.getNext()
 
@@ -194,13 +194,13 @@ class OrderedList:
         found   = False
         count   = 0
 
-        while None != current:
+        while current:
             if item == current.getData():
                 return count
-            else:
-                previous = current
-                current  = current.getNext()
-                count   += 1
+
+            previous = current
+            current  = current.getNext()
+            count   += 1
 
         print("%s do not exist"%item) 
         
@@ -209,7 +209,7 @@ class OrderedList:
         previous = None
         stop     = False
 
-        while None != current and not stop:
+        while current and not stop:
             if item < current.getData():
                 stop = True
             else:
@@ -217,7 +217,7 @@ class OrderedList:
                 current  = current.getNext()
 
         node = Node(item)
-        if previous == None:
+        if not previous:
             node.setNext(self.head)
             self.head = node
         else:
@@ -229,10 +229,10 @@ class OrderedList:
         previous = None
         node = Node(item)
 
-        if None == self.head:
+        if not self.head:
             self.head = node
         else:
-            while None != current:
+            while current:
                 previous = current
                 current  = current.getNext()
 
@@ -262,7 +262,7 @@ class OrderedList:
                 previous = current
                 current  = current.getNext()
 
-        if previous == None:
+        if not previous:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
