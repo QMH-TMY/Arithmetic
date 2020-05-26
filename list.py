@@ -23,26 +23,32 @@ def sum3(n=10):
 
     return thesum
 
+def charFreq(string):
+    #统计字符串中26字母的频率
+    freqLst = [0]*26
+    for i in range(len(string)):
+        pos = ord(string[i]) - ord('a')
+        freqLst[pos] += 1                                                                                      
+    return freqLst
+
 def arrage(s1,s2):
     '''计数和求乱序字符'''
-    c1 = [0]*26
-    c2 = [0]*26
-    
-    for i in range(len(s1)):
-        pos = ord(s1[i]) - ord('a') 
-        c1[pos] += 1
+    c1 = charFreq(s1)
+    c2 = charFreq(s2)
 
-    for i in range(len(s2)):
-        pos = ord(s2[i]) - ord('a') 
-        c2[pos] += 1
-        
-    i = 0
+    #i = 0
+    #stillok = True
+    #while i < 26 and stillok:
+    #    if c1[i] == c2[i]:
+    #        i += 1
+    #    else:
+    #        stillok = False
     stillok = True
-    while i < 26 and stillok:
-        if c1[i] == c2[i]:
-            i += 1
-        else:
+    for i in range(26):
+        if c1[i] != c2[i]:
             stillok = False
+            break
+
     return stillok
 
 def testlist():
